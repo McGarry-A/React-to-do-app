@@ -1,9 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import "./App.css";
+import './images/add-button.svg'
 
 function App() {
-  const [toDoList, setToDoList] = useState(["card1"]);
+  const [toDoList, setToDoList] = useState(["Do some coding...","And then do some more!"]);
   const [toDoItem, setToDoItem] = useState("");
 
   const updateInputValue = event => setToDoItem(event.target.value);
@@ -15,17 +16,20 @@ function App() {
   };
 
   const deleteHandler = index => {
-    console.log("deleteHandler called")
     let storedList = [...toDoList]
     storedList.splice(index, 1)
     setToDoList(storedList)
   }
 
   return (
-    <div>
-      <h1>To Do List</h1>
-      <input value={ toDoItem } onChange={ updateInputValue }></input>
-      <button onClick={addCardHandler}>Add To Do Item</button>
+    <div className="container">
+      <h1 className="main-heading">To Do List</h1>
+      <div className="addToDo">
+        <input className="input" placeholder="Add to do list item" value={ toDoItem } onChange={ updateInputValue }></input>
+        {/* <img src="./images/plus.png" alt="add"></img> */}
+        <button className="cta" onClick={addCardHandler}>Add</button>
+      </div>
+      
       {toDoList.map((el, index) => {
         return <ToDoItem name={el} key={index} index={index} func={deleteHandler}/>;
       })}
@@ -35,9 +39,9 @@ function App() {
 
 const ToDoItem = (props) => {
   return (
-    <div>
-      <h3>{props.name}</h3>
-      <button index={props.index} onClick={()=>{props.func(props.index)}}>Delete</button>
+    <div className="to-do-item">
+      <p>{props.name}</p>
+      <button id="delete-button" index={props.index} onClick={()=>{props.func(props.index)}}>X</button>
     </div>
   );
 };
