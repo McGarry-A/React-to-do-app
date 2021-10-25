@@ -26,7 +26,6 @@ function App() {
       <h1 className="main-heading">To Do List</h1>
       <div className="addToDo">
         <input className="input" placeholder="Add to do list item" value={ toDoItem } onChange={ updateInputValue }></input>
-        {/* <img src="./images/plus.png" alt="add"></img> */}
         <button className="cta" onClick={addCardHandler}>Add</button>
       </div>
       
